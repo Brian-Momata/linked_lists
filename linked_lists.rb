@@ -6,3 +6,18 @@ class Node
     @next_node = next_node
   end
 end
+
+class LinkedList
+  def append(value)
+    if @head == nil
+      @head = Node.new(value)
+    else
+      current = @head
+      new_node = Node.new(value)
+      while current.next_node != nil
+        current = current.next_node
+      end
+      current.next_node = new_node
+    end
+  end
+end
