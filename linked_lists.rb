@@ -44,4 +44,17 @@ class LinkedList
       count
     end
   end
+
+  def head
+    @head
+  end
+
+  def tail
+    current = @head
+    while current.next_node != nil
+      current = current.next_node
+    end
+    current
+  end
+
 end
