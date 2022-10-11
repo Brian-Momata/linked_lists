@@ -68,4 +68,12 @@ class LinkedList
     array[index]
   end
 
+  def pop
+    tail = self.tail
+    current = @head
+    while current.next_node != tail
+      current = current.next_node
+    end
+    current.next_node = nil
+  end
 end
