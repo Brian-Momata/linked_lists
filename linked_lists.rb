@@ -101,4 +101,24 @@ class LinkedList
     end
     nil if self.contains?(value) == false
   end
+
+  def to_s
+    string = ''
+    array = []
+    current = @head
+    while current.next_node != nil
+      array << current 
+      current = current.next_node
+    end
+    array << current
+    array.each_with_index do |node, index|
+      if index == 0
+        string += "(#{node.value}) "
+      else
+        string += "-> " + "(#{node.value}) "
+      end
+    end
+    string += "-> nil"
+    string
+  end
 end
