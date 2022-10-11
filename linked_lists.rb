@@ -87,4 +87,18 @@ class LinkedList
     array << current.value
     array.include?(value)
   end
+
+  def find(value)
+    array = []
+    current = @head
+    while current.next_node != nil
+      array << current 
+      current = current.next_node
+    end
+    array << current
+    array.each_with_index do |node, index|
+      return index if node.value == value
+    end
+    nil if self.contains?(value) == false
+  end
 end
