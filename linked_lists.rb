@@ -57,4 +57,15 @@ class LinkedList
     current
   end
 
+  def at(index)
+    array = []
+    current = @head
+    while current.next_node != nil
+      array << current 
+      current = current.next_node
+    end
+    array << current
+    array[index]
+  end
+
 end
