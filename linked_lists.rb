@@ -31,4 +31,17 @@ class LinkedList
     end
   end
 
+  def size
+    if @head == nil
+      "linked list is empty"
+    else
+      count = 1
+      current = @head
+      while current.next_node != nil
+        current = current.next_node
+        count += 1
+      end
+      count
+    end
+  end
 end
