@@ -138,4 +138,18 @@ class LinkedList
       new_node.next_node = node
     end
   end
+
+  def remove_at(index)
+    node = self.at(index)
+    if index == 0
+      current = @head
+      @head = current.next_node
+    else
+      current = @head
+      while current.next_node != node
+        current = current.next_node
+      end
+      current.next_node = node.next_node
+    end
+  end
 end
