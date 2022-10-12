@@ -59,6 +59,7 @@ class LinkedList
 
   def at(index)
     array = []
+    return nil if @head == nil
     current = @head
     while current.next_node != nil
       array << current 
@@ -69,57 +70,73 @@ class LinkedList
   end
 
   def pop
-    tail = self.tail
-    current = @head
-    while current.next_node != tail
-      current = current.next_node
+    if @head == nil
+      nil
+    else
+      tail = self.tail
+      current = @head
+      while current.next_node != tail
+        current = current.next_node
+      end
+      current.next_node = nil
     end
-    current.next_node = nil
   end
   
   def contains?(value)
     array = []
-    current = @head
-    while current.next_node != nil
-      array << current.value 
-      current = current.next_node
+    if @head == nil
+      false
+    else
+      current = @head
+      while current.next_node != nil
+        array << current.value 
+        current = current.next_node
+      end
+      array << current.value
+      array.include?(value)
     end
-    array << current.value
-    array.include?(value)
   end
 
   def find(value)
     array = []
-    current = @head
-    while current.next_node != nil
-      array << current 
-      current = current.next_node
+    if @head == nil
+      nil
+    else
+      current = @head
+      while current.next_node != nil
+        array << current 
+        current = current.next_node
+      end
+      array << current
+      array.each_with_index do |node, index|
+        return index if node.value == value
+      end
+      nil if self.contains?(value) == false
     end
-    array << current
-    array.each_with_index do |node, index|
-      return index if node.value == value
-    end
-    nil if self.contains?(value) == false
   end
 
   def to_s
     string = ''
     array = []
-    current = @head
-    while current.next_node != nil
-      array << current 
-      current = current.next_node
-    end
-    array << current
-    array.each_with_index do |node, index|
-      if index == 0
-        string += "(#{node.value}) "
-      else
-        string += "-> " + "(#{node.value}) "
+    if @head == nil
+      'List is empty'
+    else
+      current = @head
+      while current.next_node != nil
+        array << current 
+        current = current.next_node
       end
+      array << current
+      array.each_with_index do |node, index|
+        if index == 0
+          string += "(#{node.value}) "
+        else
+          string += "-> " + "(#{node.value}) "
+        end
+      end
+      string += "-> nil"
+      string
     end
-    string += "-> nil"
-    string
   end
 
   def insert_at(value, index)
